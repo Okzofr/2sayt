@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомобильный мир</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .car-card {
+            transition: all 0.3s ease;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+        }
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .car-details {
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Навигация -->
+    <nav class="bg-gray-900 text-white shadow-lg fixed w-full z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-car text-blue-500 text-2xl"></i>
+                    <span class="font-bold text-xl">AutoWorld</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="hover:text-blue-400">Главная</a>
+                    <a href="#" class="hover:text-blue-400">Каталог</a>
+                    <a href="#" class="hover:text-blue-400">О нас</a>
+                    <a href="#" class="hover:text-blue-400">Контакты</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Мобильное меню -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 py-2">
+            <a href="#" class="block py-2 hover:text-blue-400">Главная</a>
+            <a href="#" class="block py-2 hover:text-blue-400">Каталог</a>
+            <a href="#" class="block py-2 hover:text-blue-400">О нас</a>
+            <a href="#" class="block py-2 hover:text-blue-400">Контакты</a>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <header class="hero flex items-center justify-center text-center text-white mt-16">
+        <div class="px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Мир автомобилей</h1>
+            <p class="text-xl md:text-2xl mb-8">Откройте для себя лучшие модели 2023 года</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                Подробнее
+            </button>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Фильтры -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Наши автомобили</h2>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-btn active px-4 py-2 bg-gray-200 rounded-full hover:bg-blue-500 hover:text-white transition" data-filter="all">
+                    Все
+                </button>
+                <button class="filter-btn px-4 py-2 bg-gray-200 rounded-full hover:bg-blue-500 hover:text-white transition" data-filter="sport">
+                    Спортивные
+                </button>
+                <button class="filter-btn px-4 py-2 bg-gray-200 rounded-full hover:bg-blue-500 hover:text-white transition" data-filter="suv">
+                    Внедорожники
+                </button>
+                <button class="filter-btn px-4 py-2 bg-gray-200 rounded-full hover:bg-blue-500 hover:text-white transition" data-filter="luxury">
+                    Люкс
+                </button>
+                <button class="filter-btn px-4 py-2 bg-gray-200 rounded-full hover:bg-blue-500 hover:text-white transition" data-filter="electric">
+                    Электрические
+                </button>
+            </div>
+        </section>
+
+        <!-- Галлерея автомобилей -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Карточка 1 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="sport">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1507324286856-073e03f31270?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sports Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">NEW</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Ferrari SF90</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">4.9 (128 отзывов)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Мощный спортивный автомобиль с гибридной силовой установкой.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$375,000</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="1">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="suv">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="SUV Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Популярный</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Land Rover Defender</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">4.7 (95 отзывов)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Легендарный внедорожник с современными технологиями.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$65,000</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="2">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="luxury">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1551836023-d5b697361c1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Luxury Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Эксклюзив</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Rolls-Royce Phantom</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">5.0 (64 отзыва)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Изысканный автомобиль класса люкс с ручной сборкой.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$460,000</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="3">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 4 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="electric">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1554744512-d6c603f27c54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Electric Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Эко</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Tesla Model S Plaid</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">4.8 (142 отзыва)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Самый быстрый серийный электромобиль в мире.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$129,990</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="4">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 5 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="sport">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sports Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Хит</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Porsche 911 Turbo S</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">4.9 (87 отзывов)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Легендарный спортивный автомобиль с феноменальной динамикой.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$203,500</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="5">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Карточка 6 -->
+            <div class="car-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="suv">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1541443131876-44b03de101c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="SUV Car" class="w-full h-64 object-cover">
+                    <span class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">Выбор</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Mercedes G-Class</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="text-yellow-400 mr-1"><i class="fas fa-star"></i></span>
+                        <span class="text-gray-700">4.6 (73 отзыва)</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Культовый внедорожник премиум-класса с брутальным дизайном.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-blue-600">$139,900</span>
+                        <button class="view-details-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition" data-car="6">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Почему мы" -->
+        <section class="my-16 py-12 bg-blue-50 rounded-xl">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">Почему выбирают нас</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center px-4">
+                        <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Гарантия качества</h3>
+                        <p class="text-gray-600">Все автомобили проходят тщательную проверку перед продажей.</p>
+                    </div>
+                    <div class="text-center px-4">
+                        <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tag text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Лучшие цены</h3>
+                        <p class="text-gray-600">Предоставляем конкурентоспособные цены на рынке.</p>
+                    </div>
+                    <div class="text-center px-4">
+                        <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-headset text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Поддержка 24/7</h3>
+                        <p class="text-gray-600">Наша служба поддержки всегда готова помочь вам.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-car text-blue-500 mr-2"></i> AutoWorld
+                    </h3>
+                    <p class="text-gray-400">Лучший выбор автомобилей на любой вкус и бюджет.</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Контакты</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400"><i class="fas fa-map-marker-alt mr-2 text-blue-500"></i> Москва, ул. Автомобильная, 123</li>
+                        <li class="text-gray-400"><i class="fas fa-phone-alt mr-2 text-blue-500"></i> +7 (495) 123-45-67</li>
+                        <li class="text-gray-400"><i class="fas fa-envelope mr-2 text-blue-500"></i> info@autoworld.ru</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Часы работы</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Пн-Пт: 9:00 - 20:00</li>
+                        <li>Сб: 10:00 - 18:00</li>
+                        <li>Вс: 11:00 - 16:00</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Новости</h3>
+                    <p class="text-gray-400">Подпишитесь на нашу рассылку, чтобы быть в курсе новинок.</p>
+                    <div class="mt-4 flex">
+                        <input type="email" placeholder="Ваш email" class="px-4 py-2 rounded-l focus:outline-none text-gray-800 w-full">
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 AutoWorld. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно с подробностями -->
+    <div id="car-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg max-w-3xl w-full mx-4 overflow-hidden max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 id="modal-car-name" class="text-3xl font-bold"></h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <div id="modal-car-content" class="car-details opacity-0">
+                    <!-- Контент будет заполнен JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные для модального окна
+        const carDetails = {
+            1: {
+                images: [
+                    'https://images.unsplash.com/photo-1507324286856-073e03f31270?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1547038577-da80abbc4f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1355&q=80',
+                    'https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1301&q=80'
+                ],
+                description: 'Ferrari SF90 Stradale — это первый в истории Ferrari серийный автомобиль с подключаемой гибридной силовой установкой. Суммарная мощность составляет 1000 л.с., что позволяет разгоняться от 0 до 100 км/ч за 2,5 секунды.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '340 км/ч'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '2.5 сек'},
+                    {icon: 'fa-gas-pump', label: 'Топливо', value: 'Бензин/Электричество'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Полный (4WD)'},
+                    {icon: 'fa-cogs', label: 'Коробка', value: '8-ступ. робот'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '1000 л.с.'}
+                ],
+                price: '$375,000'
+            },
+            2: {
+                images: [
+                    'https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1610397648930-477b8c7f0943?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80'
+                ],
+                description: 'Новый Land Rover Defender сочетает в себе легендарную проходимость с современными технологиями. Автомобиль предлагает просторный салон, передовые системы помощи водителю и удивительные внедорожные возможности.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '210 км/ч'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '5.7 сек'},
+                    {icon: 'fa-gas-pump', label: 'Топливо', value: 'Дизель/Бензин'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Полный (4WD)'},
+                    {icon: 'fa-cogs', label: 'Коробка', value: '8-ступ. автомат'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '400 л.с.'}
+                ],
+                price: '$65,000'
+            },
+            3: {
+                images: [
+                    'https://images.unsplash.com/photo-1551836023-d5b697361c1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1555626906-fcf1f2840d1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80'
+                ],
+                description: 'Rolls-Royce Phantom VIII — это вершина роскоши в автомобильном мире. Каждый Phantom собирается вручную на заводе в Гудвуде, Англия. Автомобиль предлагает безупречный комфорт и бесшумность, а также возможность индивидуальной настройки практически каждого элемента.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '250 км/ч (ограничено)'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '5.3 сек'},
+                    {icon: 'fa-gas-pump', label: 'Топливо', value: 'Бензин'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Задний (RWD)'},
+                    {icon: 'fa-cogs', label: 'Коробка', value: '8-ступ. автомат'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '563 л.с.'}
+                ],
+                price: '$460,000'
+            },
+            4: {
+                images: [
+                    'https://images.unsplash.com/photo-1554744512-d6c603f27c54?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1554866585-cd94860890b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80',
+                    'https://images.unsplash.com/photo-1603833661660-1a8b9126a1e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                ],
+                description: 'Tesla Model S Plaid — это самый быстрый серийный автомобиль в мире. С тремя электродвигателями он развивает невероятную мощность и обеспечивает запас хода до 637 км. Модель оснащена революционным интерьером с 17-дюймовым сенсорным экраном и игровой системой на уровне PS5.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '322 км/ч'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '1.99 сек'},
+                    {icon: 'fa-plug', label: 'Тип', value: 'Электромобиль'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Полный (AWD)'},
+                    {icon: 'fa-battery-full', label: 'Запас хода', value: '637 км'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '1020 л.с.'}
+                ],
+                price: '$129,990'
+            },
+            5: {
+                images: [
+                    'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1558980348-a76abf91b8b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+                    'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                ],
+                description: 'Porsche 911 Turbo S — это вершина линейки 911, сочетающая в себе высочайшую производительность с повседневной практичностью. С улучшенной аэродинамикой и новой подвеской, этот автомобиль устанавливает новые стандарты в своем классе.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '330 км/ч'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '2.7 сек'},
+                    {icon: 'fa-gas-pump', label: 'Топливо', value: 'Бензин'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Полный (4WD)'},
+                    {icon: 'fa-cogs', label: 'Коробка', value: '8-ступ. PDK'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '650 л.с.'}
+                ],
+                price: '$203,500'
+            },
+            6: {
+                images: [
+                    'https://images.unsplash.com/photo-1541443131876-44b03de101c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1616788498238-04a4e2d9f1ee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                    'https://images.unsplash.com/photo-1617531653520-4896c55794a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+                ],
+                description: 'Mercedes-Benz G-Class — это икона среди внедорожников, сохранившая свой культовый дизайн с 1979 года. При этом автомобиль оснащен самыми современными технологиями, включая систему помощи при бездорожье и роскошный интерьер премиум-класса.',
+                specs: [
+                    {icon: 'fa-tachometer-alt', label: 'Макс. скорость', value: '210 км/ч'},
+                    {icon: 'fa-bolt', label: 'Разгон 0-100', value: '5.9 сек'},
+                    {icon: 'fa-gas-pump', label: 'Топливо', value: 'Бензин/Дизель'},
+                    {icon: 'fa-car', label: 'Тип привода', value: 'Полный (4WD)'},
+                    {icon: 'fa-cogs', label: 'Коробка', value: '9-ступ. автомат'},
+                    {icon: 'fa-horse-head', label: 'Мощность', value: '585 л.с.'}
+                ],
+                price: '$139,900'
+            }
+        };
+
+        // Функция для фильтрации автомобилей
+        function filterCars(category) {
+            const cars = document.querySelectorAll('.car-card');
+            cars.forEach(car => {
+                if (category === 'all' || car.dataset.category === category) {
+                    car.style.display = 'block';
+                } else {
+                    car.style.display = 'none';
+                }
+            });
+        }
+
+        // Функция для открытия модального окна с деталями автомобиля
+        function openCarModal(carId) {
+            const modal = document.getElementById('car-modal');
+            const car = carDetails[carId];
+            
+            // Заполняем заголовок
+            document.getElementById('modal-car-name').textContent = document.querySelector(`.car-card[data-car="${carId}"] h3`).textContent;
+            
+            // Заполняем содержимое
+            const content = document.getElementById('modal-car-content');
+            content.innerHTML = `
+                <div class="relative mb-6">
+                    <div class="carousel">
+                        ${car.images.map(img => `
+                            <div><img src="${img}" alt="Car Image" class="w-full h-96 object-cover rounded-lg"></div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4">Описание</h4>
+                        <p class="text-gray-700 mb-6">${car.description}</p>
+                        <h4 class="text-xl font-bold mb-4">Технические характеристики</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            ${car.specs.map(spec => `
+                                <div class="flex items-center p-3 bg-gray-100 rounded-lg">
+                                    <i class="fas ${spec.icon} text-blue-600 mr-3"></i>
+                                    <div>
+                                        <div class="text-sm text-gray-500">${spec.label}</div>
+                                        <div class="font-semibold">${spec.value}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold mb-4">Цена</h4>
+                        <div class="text-3xl font-bold text-blue-600 mb-6">${car.price}</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-bold transition transform hover:scale-105 mb-4">
+                            Тест-драйв
+                        </button>
+                        <button class="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 py-3 px-4 rounded-lg font-bold transition">
+                            Консультация
+                        </button>
+                        <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="font-semibold">Срок доставки:</span>
+                                <span class="ml-auto">3-7 дней</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="font-semibold">Гарантия:</span>
+                                <span class="ml-auto">3 года</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Инициализация карусели изображений
+            setTimeout(() => {
+                new Glide('.carousel', {
+                    type: 'carousel',
+                    perView: 1,
+                    autoplay: 3000
+                }).mount();
+            }, 100);
+            
+            // Показываем модальное окно
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('opacity-0');
+            }, 10);
+            
+            // Закрытие при клике вне модального окна
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeCarModal();
+                }
+            });
+        }
+
+        // Функция для закрытия модального окна
+        function closeCarModal() {
+            const modal = document.getElementById('car-modal');
+            document.getElementById('modal-car-content').classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 500);
+        }
+
+        // Инициализация после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчики для фильтров
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    filterCars(this.dataset.filter);
+                });
+            });
+            
+            // Обработчики для кнопок "Подробнее"
+            document.querySelectorAll('.view-details-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    openCarModal(this.dataset.car);
+                });
+            });
+            
+            // Обработчик для закрытия модального окна
+            document.getElementById('close-modal').addEventListener('click', closeCarModal);
+            
+            // Мобильное меню
+            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            
+            // Подключаем библиотеку для карусели изображений
+            const glideScript = document.createElement('script');
+            glideScript.src = 'https://cdn.jsdelivr.net/npm/@glidejs/glide';
+            document.head.appendChild(glideScript);
+            
+            glideScript.onload = function() {
+                // Карусель изображений (будет инициализирована при открытии модального окна)
+            };
+        });
+    </script>
+</body>
+</html>
